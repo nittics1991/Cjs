@@ -1,0 +1,26 @@
+{
+  "name": "cjs",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nittics1991/Cjs.git"
+  },
+  "author": "bunpabcom@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nittics1991/Cjs/issues"
+  },
+  "homepage": "https://github.com/nittics1991/Cjs#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0"
+  }
+}
