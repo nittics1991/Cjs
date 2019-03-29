@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.min.css">
+
+<title></title>
+</head>
+<body>
+
+<div id="button-menu"></div>
+
+<div>
+<input type="button" value="TEST" />
+</div>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="cmb.js"></script>
+
+<script>
+
+$(function() {
+	$("input[type=button]")
+	  .button()
+	  .click(function( event ) {
+		event.preventDefault();
+	    console.log("AAA");
+	  });
+});
+
+///////////////////////////////////////
+
+
+
+
+///////////////////////////////////////
+
+$(function() {
+	let target = document.getElementById('button-menu');
+	
+	let obj = new ConcertoMb(target, {
+		
+		
+		
+		
+		
+	}).render();
+	
+	
+	
+	
+	
+});
+
+
+</script>
+</body>
+</html>

@@ -8,44 +8,55 @@ class ConcertoMb
 	}
 	
 	_init() {
-		this.defined = [
-			{
+		this.defined = {
+		items:[
+		],
+		button:{
+			layout:[
+				'add','remove','save','reset','upload','reset',
+			],
+			add:{
 				icon:"ui-icon-plusthick",
 				click:function(e) {
 					console.log("AAA");
 				},
 			},
-			{
+			remove:{
 				icon:"ui-icon-minusthick",
 				click:function(e) {
 					console.log("BBB");
 				},
 			},
-			{
+			save:{
 				icon:"ui-icon-disk",
 				click:function(e) {
 					console.log("CCC");
 				},
 			},
-			{
+			reset:{
 				icon:"ui-icon-home",
 				click:function(e) {
 					console.log("DDD");
 				},
 			},
-			{
+			download:{
 				icon:"ui-icon-arrowthickstop-1-s",
 				click:function(e) {
 					console.log("EEE");
 				},
 			},
-			{
+			upload:{
 				icon:"ui-icon-arrowthickstop-1-n",
 				click:function(e) {
 					console.log("FFF");
 				},
 			},
-		];
+			css:{
+				'font-size':'0.8em',
+				'min-width':'10px',
+				'min-height':'10px',
+			},
+		}};
 	}
 	
 	_assign(defs) {
@@ -66,12 +77,13 @@ class ConcertoMb
 					<div>&nbsp;</div>
 				</div>
 				<div class="ui-widget-header">
-					<button>add</button>
-					<button>remove</button>
-					<button>save</button>
-					<button>reset</button>
-					<button>download</button>
-					<button>upload</button>
+		`;
+		
+		tmpl += this.defined.button.layout.map(function(name) {
+			return `<button>${name}</button>`;
+		}).join("\n");
+		
+		tmpl += `
 				</div>
 			</div>
 		`;
@@ -79,29 +91,23 @@ class ConcertoMb
 	}
 	
 	_setButton() {
-		let defs = this.defined;
+		let buttons = this.defined.button;
+		let layout = this.defined.button.layout;
 		let buttonset = this.el.children[0].children[1];
 		
 		$(buttonset.children).map(function(i, el) {
-			var _defs = defs;
-			
 			$(el).button({
 	  			text: false,
 	  			icons: {
-	      		  primary:_defs[i].icon || ''
+	      		  primary:buttons[layout[i]].icon || ''
 		  		}
 	  		}).click(
-	  			_defs[i].click
+	  			buttons[layout[i]].click
 	  		);
 			
 		});
 		
-		$(buttonset).children().css({
-			'font-size':'0.8em',
-			'min-width':'10px',
-			'min-height':'10px',
-		});
-		
+		$(buttonset).children().css(this.defined.button.css);
   		$(buttonset).buttonset();
  	}
 }
