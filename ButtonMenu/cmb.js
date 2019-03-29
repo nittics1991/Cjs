@@ -140,6 +140,7 @@ class ConcertoMb
 	}
 	
 	_setButton() {
+		let options = this.options;
 		let buttons = this.options.button;
 		let layout = this.options.button.layout;
 		let buttonset = this.el.children[0].children[1];
@@ -150,22 +151,29 @@ class ConcertoMb
 		});
 		
 		$(buttonset).on('click', 'button', function(e) {
+			let _options = options;
 			let classNames = e.currentTarget.className.split(' ');
-			let buttonClassNo = classNames.indexOf('concerto-bm-button');
-			let names = classNames[buttonClassNo].split('-');
+			let className = null;
 			
+			classNames.some(function(val) {
+				if (/^concerto-bm-button-.+$/.test(val)) {
+					className = val;
+					return true;
+				}
+				return false;
+			});
 			
-			console.log(names);
+			if (!className) {
+				return;
+			}
 			
+			let names = className.split('-');
+			let buttonName = names[names.length-1];
 			
-			//buttons.
-			
-			
+			if (_options.button[buttonName]['click']) {
+				return _options.button[buttonName]['click'](e);
+			}
 		});
-		
-
-		
-		
 		
 		$(buttonset).children().css(this.options.button.css);
   		$(buttonset).buttonset();
