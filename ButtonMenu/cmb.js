@@ -3,24 +3,12 @@ class ConcertoMb
 {
 	constructor(el, contents) {
 		this.el = el;
-		this.contents = contents;
+		this._init();
+		this._assign(contents);
 	}
 	
-	render() {
-		let tmpl = `
-			<div class="ui-widget-header">
-				<button>add</button>
-				<button>remove</button>
-				<button>save</button>
-				<button>reset</button>
-				<button>download</button>
-				<button>upload</button>
-			</div>
-		`;
-		
-		this.el.insertAdjacentHTML('afterbegin', tmpl);
-		
-		let defs = [
+	_init() {
+		this.defined = [
 			{
 				icon:"ui-icon-plusthick",
 				click:function(e) {
@@ -58,9 +46,43 @@ class ConcertoMb
 				},
 			},
 		];
+	}
+	
+	_assign(defs) {
 		
 		
-		$(this.el.children[0].children).map(function(i, el) {
+		
+	}
+	
+	render() {
+		this._addElement();
+		this._setButton();
+	}
+	
+	_addElement() {
+		let tmpl = `
+			<div class="concerto-bm-container">
+				<div>
+					<div>&nbsp;</div>
+				</div>
+				<div class="ui-widget-header">
+					<button>add</button>
+					<button>remove</button>
+					<button>save</button>
+					<button>reset</button>
+					<button>download</button>
+					<button>upload</button>
+				</div>
+			</div>
+		`;
+		this.el.insertAdjacentHTML('afterbegin', tmpl);
+	}
+	
+	_setButton() {
+		let defs = this.defined;
+		let buttonset = this.el.children[0].children[1];
+		
+		$(buttonset.children).map(function(i, el) {
 			var _defs = defs;
 			
 			$(el).button({
@@ -74,13 +96,13 @@ class ConcertoMb
 			
 		});
 		
-		$(this.el).children().children().css({
+		$(buttonset).children().css({
 			'font-size':'0.8em',
 			'min-width':'10px',
 			'min-height':'10px',
 		});
 		
-  		$(this.el.children[0]).buttonset();
+  		$(buttonset).buttonset();
  	}
 }
 
