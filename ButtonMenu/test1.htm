@@ -46,11 +46,32 @@ $(function() {
 	let target = document.getElementById('button-menu');
 	
 	let obj = new ConcertoMb(target, {
-		
-		
-		
-		
-		
+		menu:[
+			{
+				title:'グーグル',
+				href:'http://google.com',
+			},
+			[
+				[
+					{
+						title:'ビッグローブ',
+						href:'http://www.biglobe.ne.jp',
+					},
+					{
+						title:'ニフティ',
+						href:'http://www.nifty.com',
+					},
+				],
+				{
+					title:'ビーング',
+					href:'http://www.bing.com',
+				},
+			],
+			{
+				title:'ヤフー',
+				href:'http://yahoo.co.jp',
+			},
+		],
 	}).render();
 	
 	

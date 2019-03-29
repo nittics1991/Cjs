@@ -1,15 +1,15 @@
 
 class ConcertoMb
 {
-	constructor(el, contents) {
+	constructor(el, options = {}) {
 		this.el = el;
-		this._init();
-		this._assign(contents);
+		this._defaultOptions();
+		this._assign(options);
 	}
 	
-	_init() {
-		this.defined = {
-		items:[
+	_defaultOptions() {
+		this.options = {
+		menu:[
 		],
 		button:{
 			layout:[
@@ -98,10 +98,29 @@ class ConcertoMb
 		}};
 	}
 	
-	_assign(defs) {
-		
-		
-		
+	_assign(options) {
+		this._doAssign(this.options, options);
+	}
+	
+	_doAssign(options, input) {
+		if (Array.isArray(options)) {
+			if (Array.isArray(input)) {
+				for (let key in options) {
+					this._doAssign(options[key], options[key]);
+				}
+			}
+		} else if (typeof options === 'object')) {
+			if (typeof input === 'object')) {
+				for (let key in options) {
+					this._doAssign(options[key], options[key]);
+				}
+			}
+		} else {
+			
+			
+			
+			
+		}
 	}
 	
 	render() {
@@ -118,7 +137,7 @@ class ConcertoMb
 				<div class="ui-widget-header">
 		`;
 		
-		tmpl += this.defined.button.layout.map(function(name) {
+		tmpl += this.options.button.layout.map(function(name) {
 			return `<button class="concerto-bm-button-${name}">${name}</button>`;
 		}).join("\n");
 		
@@ -130,8 +149,8 @@ class ConcertoMb
 	}
 	
 	_setButton() {
-		let buttons = this.defined.button;
-		let layout = this.defined.button.layout;
+		let buttons = this.options.button;
+		let layout = this.options.button.layout;
 		let buttonset = this.el.children[0].children[1];
 		
 		$(buttonset.children).map(function(i, el) {
@@ -157,7 +176,7 @@ class ConcertoMb
 		
 		
 		
-		$(buttonset).children().css(this.defined.button.css);
+		$(buttonset).children().css(this.options.button.css);
   		$(buttonset).buttonset();
  	}
 }
