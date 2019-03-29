@@ -13,7 +13,7 @@ class ConcertoMb
 		],
 		button:{
 			layout:[
-				'add','remove','save','reset','upload','reset',
+				'add','remove','save','reset','download','upload',
 			],
 			add:{
 				options:{
@@ -99,27 +99,18 @@ class ConcertoMb
 	}
 	
 	_assign(options) {
-		this._doAssign(this.options, options);
+		this._doAssign(this.options, options, this.options, null);
 	}
 	
-	_doAssign(options, input) {
-		if (Array.isArray(options)) {
-			if (Array.isArray(input)) {
-				for (let key in options) {
-					this._doAssign(options[key], options[key]);
-				}
-			}
-		} else if (typeof options === 'object')) {
-			if (typeof input === 'object')) {
-				for (let key in options) {
-					this._doAssign(options[key], options[key]);
-				}
+	_doAssign(options, input, parent, prop) {
+		if (Array.isArray(options) && Array.isArray(input) ||
+			(typeof options === 'object' && typeof input === 'object')
+		) {
+			for (let key in input) {
+				this._doAssign(options[key], input[key], options, key);
 			}
 		} else {
-			
-			
-			
-			
+			parent[prop] = input;
 		}
 	}
 	
