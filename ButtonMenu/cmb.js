@@ -4,24 +4,21 @@ class ConcertoMb
 	constructor(el, contents) {
 		this.el = el;
 		this.contents = contents;
-		this._importTemplate();
-		this._checkTemplate();
-	}
-	
-	_importTemplate() {
-		this.el.insertAdjacentHTML('afterend', '<div style="display:none"></div>');
-		$(this.el).next().load("cmb.htm");
-	}
-	
-	_checkTemplate() {
-		if ((this.tmpl = document.querySelector('#concerto-bm-button')) === null) {
-			throw 'not defined template:concerto-bm-button';
-		}
 	}
 	
 	render() {
-		let tmpl = document.importNode(this.tmpl.content, true);
-		this.el.appendChild(tmpl);
+		let tmpl = `
+			<div class="ui-widget-header">
+				<button>add</button>
+				<button>remove</button>
+				<button>save</button>
+				<button>reset</button>
+				<button>download</button>
+				<button>upload</button>
+			</div>
+		`;
+		
+		this.el.insertAdjacentHTML('afterbegin', tmpl);
 		
 		let defs = [
 			{
