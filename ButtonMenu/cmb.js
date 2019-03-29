@@ -20,7 +20,8 @@ class ConcertoMb
 					icons:{
 						primary:"ui-icon-plusthick",
 					},
-		  			text: false,
+		  			text:false,
+		  			label:'add',
 				},
 				click:function(e) {
 					console.log(e);
@@ -34,7 +35,8 @@ class ConcertoMb
 					icons:{
 						primary:"ui-icon-minusthick",
 					},
-		  			text: false,
+		  			text:false,
+		  			label:'remove',
 				},
 				click:function(e) {
 					console.log("BBB");
@@ -45,7 +47,8 @@ class ConcertoMb
 					icons:{
 						primary:"ui-icon-disk",
 					},
-		  			text: false,
+		  			text:false,
+		  			label:'save',
 				},
 				click:function(e) {
 					console.log("CCC");
@@ -56,7 +59,8 @@ class ConcertoMb
 					icons:{
 						primary:"ui-icon-home",
 					},
-		  			text: false,
+		  			text:false,
+		  			label:'reset',
 				},
 				click:function(e) {
 					console.log("DDD");
@@ -67,7 +71,8 @@ class ConcertoMb
 					icons:{
 						primary:"ui-icon-arrowthickstop-1-s",
 					},
-		  			text: false,
+		  			text:false,
+		  			label:'download',
 				},
 				click:function(e) {
 					console.log("EEE");
@@ -78,7 +83,8 @@ class ConcertoMb
 					icons:{
 						primary:"ui-icon-arrowthickstop-1-n",
 					},
-		  			text: false,
+		  			text:false,
+		  			label:'upload',
 				},
 				click:function(e) {
 					console.log("FFF");
@@ -113,7 +119,7 @@ class ConcertoMb
 		`;
 		
 		tmpl += this.defined.button.layout.map(function(name) {
-			return `<button>${name}</button>`;
+			return `<button class="concerto-bm-button-${name}">${name}</button>`;
 		}).join("\n");
 		
 		tmpl += `
@@ -129,14 +135,27 @@ class ConcertoMb
 		let buttonset = this.el.children[0].children[1];
 		
 		$(buttonset.children).map(function(i, el) {
-			$(el)
-			.button(buttons[layout[i]].options || {})
-	  		.on(
-	  			'click',
-	  			buttons[layout[i]].click
-	  		);
+			$(el).button(buttons[layout[i]].options || {});
 			
 		});
+		
+		$(buttonset).on('click', 'button', function(e) {
+			let classNames = e.currentTarget.className.split(' ');
+			let buttonClassNo = classNames.indexOf('concerto-bm-button');
+			let names = classNames[buttonClassNo].split('-');
+			
+			
+			console.log(names);
+			
+			
+			//buttons.
+			
+			
+		});
+		
+
+		
+		
 		
 		$(buttonset).children().css(this.defined.button.css);
   		$(buttonset).buttonset();
