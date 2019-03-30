@@ -81,7 +81,7 @@ class Event
 			throw 'reqired type string';
 		}
 		
-		let args = [this];
+		let args = [publisher];
 		if (!Array.isArray(context)) {
 			args.push(context);
 		} else {
@@ -95,7 +95,6 @@ class Event
 		}
 		
 		let results = [];
-		let result;
 		
 		this.stop = false;
 		

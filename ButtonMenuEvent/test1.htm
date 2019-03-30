@@ -34,20 +34,26 @@
 		constructor(event)
 		{
 			this.event = event;
+			this.name = 'Model1';
 		}
 		
 		change()
 		{
 			console.log("Model1 change");
-			let ans = this.event.fire(this, 'change', this);
-			console.log(ans);
+			let ans = this.event.fire(this, 'change', 'AAAA');
+			console.log('ans1=' + ans);
 		}
 		
 		test(...args)
 		{
 			console.log("Model1 test");
 			console.log(args);
+			args[0].func();
 			return 'Model1 test success';
+		}
+		
+		func() {
+			console.log('Model1 func');
 		}
 	}
 	
@@ -56,22 +62,27 @@
 		constructor(event)
 		{
 			this.event = event;
+			this.name = 'Model2';
 		}
 		
 		change()
 		{
 			console.log("Model2 change");
-			let ans = this.event.fire(this, 'change', this);
-			console.log(ans);
+			let ans = this.event.fire(this, 'change', 'BBBB');
+			console.log('ans2=' + ans);
 		}
 		
 		test(...args)
 		{
 			console.log("Model2 test");
 			console.log(args);
+			args[0].func();
 			return 'Model2 test success';
 		}
 		
+		func() {
+			console.log('Model2 func');
+		}
 	}
 	
 	m1 = new Model1(ev);
