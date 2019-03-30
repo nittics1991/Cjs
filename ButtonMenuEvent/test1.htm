@@ -29,23 +29,58 @@
 (function() {
 	let ev = new Event();
 	
-	let publisher, methodName, callback;
-	publisher = {a:1, b:2};
-	methodName = 'methodName';
-	callback = function(t) {console.warn(t);};
+	class Model1
+	{
+		constructor(event)
+		{
+			this.event = event;
+		}
+		
+		change()
+		{
+			console.log("Model1 change");
+			this.event.fire(this, 'change', this);
+		}
+		
+		test(...args)
+		{
+			console.log("Model1 test");
+			console.log(args);
+		}
+	}
 	
-	ev.attach(publisher, methodName, callback);
+	class Model2
+	{
+		constructor(event)
+		{
+			this.event = event;
+		}
+		
+		change()
+		{
+			console.log("Model2 change");
+			this.event.fire(this, 'change', this);
+		}
+		
+		test(...args)
+		{
+			console.log("Model2 test");
+			console.log(args);
+		}
+		
+	}
+	
+	m1 = new Model1(ev);
+	m2 = new Model1(ev);
+	
+	ev.attach(m1, 'change', m2.test);
 	
 	
-	publisher2 = {a:11, b:12};
-	methodName2 = 'methodNameA';
-	callback2 = function(t) {console.log(t);};
+	m1.change();
 	
 	
-	ev.attach(publisher2, methodName2, callback2);
 	
 	
-	ev.detach(publisher, methodName, callback);
 	
 	
 })();

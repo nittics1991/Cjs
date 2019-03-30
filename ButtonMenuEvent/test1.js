@@ -99,7 +99,7 @@ class Event
 		
 		this.stop = false;
 		
-		for (listener in this.listener[index]) {
+		for (listener in this.listeners[index]) {
 			results.push(listener.apply(null, args));
 			
 			if (this.stop) {
