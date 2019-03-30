@@ -39,13 +39,15 @@
 		change()
 		{
 			console.log("Model1 change");
-			this.event.fire(this, 'change', this);
+			let ans = this.event.fire(this, 'change', this);
+			console.log(ans);
 		}
 		
 		test(...args)
 		{
 			console.log("Model1 test");
 			console.log(args);
+			return 'Model1 test success';
 		}
 	}
 	
@@ -59,19 +61,21 @@
 		change()
 		{
 			console.log("Model2 change");
-			this.event.fire(this, 'change', this);
+			let ans = this.event.fire(this, 'change', this);
+			console.log(ans);
 		}
 		
 		test(...args)
 		{
 			console.log("Model2 test");
 			console.log(args);
+			return 'Model2 test success';
 		}
 		
 	}
 	
 	m1 = new Model1(ev);
-	m2 = new Model1(ev);
+	m2 = new Model2(ev);
 	
 	ev.attach(m1, 'change', m2.test);
 	
