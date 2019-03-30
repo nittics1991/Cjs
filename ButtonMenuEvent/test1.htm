@@ -34,8 +34,16 @@
 	methodName = 'methodName';
 	callback = function(t) {console.warn(t);};
 	
-	
 	ev.attach(publisher, methodName, callback);
+	
+	
+	publisher2 = {a:11, b:12};
+	methodName2 = 'methodNameA';
+	callback2 = function(t) {console.log(t);};
+	
+	
+	ev.attach(publisher2, methodName2, callback2);
+	
 	
 	ev.detach(publisher, methodName, callback);
 	
