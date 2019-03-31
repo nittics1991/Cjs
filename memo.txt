@@ -2,3 +2,7 @@
 js基礎
 https://www.slideshare.net/yuka2py/javascript-23768378
 
+コンポーネント分割例
+https://qiita.com/kaorina/items/86892081b5e119a11e9d
+
+
